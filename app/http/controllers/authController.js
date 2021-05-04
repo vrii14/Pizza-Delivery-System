@@ -7,9 +7,11 @@ function authController() {
     }
     
     return {
+        //render login page
         login(req, res) {
             res.render('auth/login')
         },
+        //validation after clicking on login button
         postLogin(req, res, next) {
             const { email, password }   = req.body
            // Validate request 
@@ -36,6 +38,7 @@ function authController() {
                 })
             })(req, res, next)
         },
+        //render register page
         register(req, res) {
             res.render('auth/register')
         },
@@ -59,7 +62,8 @@ function authController() {
              }
          })
 
-         // Hash password 
+         // Hash password
+         //hash with 10 rounds of salt 
          const hashedPassword = await bcrypt.hash(password, 10)
          // Create a user 
          const user = new User({
@@ -67,7 +71,7 @@ function authController() {
              email,
              password: hashedPassword
          })
-
+         //save new user object to db
          user.save().then((user) => {
             // Login
             return res.redirect('/')

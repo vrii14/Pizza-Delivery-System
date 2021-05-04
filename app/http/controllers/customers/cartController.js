@@ -2,19 +2,12 @@ const { json } = require("express")
 
 function cartController() {
     return {
+        //render cart page 
         index(req, res) {
             res.render('customers/cart')
         },
+        //post request to update the cart
         update(req, res) {
-            // let cart = {
-            //     items: {
-            //         pizzaId: { item: pizzaObject, qty:0 },
-            //         pizzaId: { item: pizzaObject, qty:0 },
-            //         pizzaId: { item: pizzaObject, qty:0 },
-            //     },
-            //     totalQty: 0,
-            //     totalPrice: 0
-            // }
             // for the first time creating cart and adding basic object structure
             if (!req.session.cart) {
                 req.session.cart = {
@@ -24,7 +17,6 @@ function cartController() {
                 }
             }
             let cart = req.session.cart
-
             // Check if item does not exist in cart 
             if(!cart.items[req.body._id]) {
                 cart.items[req.body._id] = {

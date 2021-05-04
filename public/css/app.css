@@ -363,7 +363,12 @@ section.cart .amount {
 }
 
 section.login {
-  background: #F8F8F8;
+  position: relative;
+  background-image: url("../img/pizzabg.jpeg") ;
+  background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+opacity: 0.9;
   min-height: calc(100vh - 86px);
 }
 

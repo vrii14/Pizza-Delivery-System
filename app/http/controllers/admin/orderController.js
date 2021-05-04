@@ -4,6 +4,7 @@ const Order = require('../../../models/order')
 
 function orderController() {
     return {
+        //get all orders from db and render orders page
         index(req, res) {
            order.find({ status: { $ne: 'completed' } }, null, { sort: { 'createdAt': -1 }}).populate('customerId', '-password').exec((err, orders) => {
                if(req.xhr) {

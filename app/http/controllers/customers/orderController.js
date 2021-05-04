@@ -3,8 +3,8 @@ const moment = require('moment')
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 function orderController () {
     return {
+        //post request for orders
         store(req, res) {
-    
             // Validate request
             const { phone, address, stripeToken, paymentType } = req.body
             if(!phone || !address) {
@@ -17,9 +17,10 @@ function orderController () {
                 phone,
                 address
             })
+            //save new order to the db
             order.save().then(result => {
+                //populate to get customer id entry from user model in order entry
                 Order.populate(result, { path: 'customerId' }, (err, placedOrder) => {
-                    // req.flash('success', 'Order placed successfully')
 
                     // Stripe payment
                     if(paymentType === 'card') {
@@ -56,6 +57,8 @@ function orderController () {
                 return res.status(500).json({ message : 'Something went wrong' });
             })
         },
+        //get all the orders of a particular customer from db
+        // and render orders page
         async index(req, res) {
             const orders = await Order.find({ customerId: req.user._id },
                 null,
@@ -63,6 +66,7 @@ function orderController () {
             res.header('Cache-Control', 'no-store')
             res.render('customers/orders', { orders: orders, moment: moment })
         },
+        //get one particular order by its id and render single order page
         async show(req, res) {
             const order = await Order.findById(req.params.id)
             // Authorize user

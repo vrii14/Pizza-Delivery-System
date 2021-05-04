@@ -12,7 +12,11 @@ const admin = require('../app/http/middlewares/admin')
 
 function initRoutes(app) {
     app.get('/', homeController().index)
+    //get request for login page with guest middleware applied 
+    //and page rendered with authcontroller
     app.get('/login', guest, authController().login)
+    //post request for login page handled authentication 
+    // by passport with authcontroller 
     app.post('/login', authController().postLogin)
     app.get('/register', guest, authController().register)
     app.post('/register', authController().postRegister)
@@ -26,7 +30,7 @@ function initRoutes(app) {
     app.get('/customer/orders', auth, orderController().index)
     app.get('/customer/orders/:id', auth, orderController().show)
 
-    // Admin routes
+    // Admin routes with admin middleware
     app.get('/admin/orders', admin, adminOrderController().index)
     app.post('/admin/order/status', admin, statusController().update)
 }

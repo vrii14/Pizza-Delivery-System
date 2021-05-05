@@ -1,5 +1,9 @@
 # Pizza Delivery System
 
+## Team Members: 
+    1. 111803157 -  Mrunal Kotkar
+    2. 111803168 -  Vrinda Ahuja
+
 ## Steps to run the application: 
     1. Clone the repository and cd to the folder.
     2. Run npm install.

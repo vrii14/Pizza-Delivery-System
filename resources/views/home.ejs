@@ -8,14 +8,14 @@ background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, F
             <h6 class="text-xl"><em>Are you hungry?</em></h6>
             <h2 class="text-3xl md:text-6xl font-bold">Don't wait!</h2>
             <h4 class="text-xl"><em>Grab a Pizza Now</em></h4>
-            <button class="px-6 py-2 rounded-full text-white font-bold mt-4 btn-primary">Order Now</button>
+            <button onclick="document.location='#section2'" class="px-6 py-2 rounded-full text-white font-bold mt-4 btn-primary">Order Now</button>
         </div>
         <div class="w-1/2 css-image">
             <img src="/img/pizza_gif.gif" alt="">
         </div>
     </div>
 </section>
-<section class="menu container mx-auto py-8">
+<section class="menu container mx-auto py-8" id="section2">
     <h1 class="text-3xl font-bold mb-8" style="text-align: center;">Pizza Menu</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16">
         <% pizzas.forEach(function(pizza) { %>
